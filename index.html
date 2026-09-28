@@ -1,180 +1,11 @@
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' expr:dir='data:blog.languageDirection' lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html lang='en'>
 <head>
 <meta charset='UTF-8'/>
 <meta content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport'/>
 <title>Premium Ludo International</title>
-
-<b:skin><![CDATA[
-/* Ludo game styling */
-]]></b:skin>
-
-<style type='text/css'>
-/*<![CDATA[*/
-*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847; font-family:'Segoe UI', Arial, sans-serif; overflow-x:hidden; user-select:none; }
-#ludoGame{ min-height:100vh; padding:5px 8px 60px; color:#fff; position: relative; display:none; }
-.game{ width:min(760px,100%); margin:auto; }
-
-/* HOME SCREEN */
-#homeScreen { display: flex; flex-direction: column; align-items: center; min-height: 100vh; background: radial-gradient(circle at center, #1a3c6e 0%, #0c2847 100%); padding: 40px 15px 20px; }
-.homeLogo { font-size: 42px; font-weight: 900; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5); margin-bottom: 30px; text-align: center; letter-spacing: 1px;}
-.homeLogo b { color: #ffd21f; text-shadow: 0 0 15px rgba(255, 210, 31, 0.6); }
-.home-btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 25px; width: 100%; max-width: 400px; }
-.homeBtn { flex: 1 1 45%; padding: 14px; font-size: 15px; font-weight: bold; border-radius: 12px; border: none; cursor: pointer; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-transform: uppercase; transition: transform 0.2s, box-shadow 0.2s;}
-.homeBtn:active { transform: scale(0.96); }
-.btn-local { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
-.btn-online { background: linear-gradient(135deg, #ffea00, #ff9d00); color: #541500; }
-.btn-friends { background: linear-gradient(135deg, #10a953, #0a6631); width: 100%; flex: 1 1 100%;}
-.btn-share { background: linear-gradient(135deg, #E1306C, #833AB4); width: 100%; flex: 1 1 100%;}
-.btn-match { background: linear-gradient(135deg, #ff416c, #ff4b2b); width: 100%; flex: 1 1 100%; }
-
-/* ONLINE PLAYERS LIST */
-.online-section { width: 100%; max-width: 400px; background: rgba(12, 40, 71, 0.8); border-radius: 15px; border: 1px solid #2863ad; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-.online-title { color: #39ff14; font-size: 16px; font-weight: bold; margin-bottom: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.live-dot { width: 8px; height: 8px; background: #ed1c24; border-radius: 50%; animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0.3; } }
-
-/* IN-GAME TOP BAR */
-.board-header { display: flex; justify-content: space-between; align-items: center; width: min(94vw, 680px); margin: 0 auto 10px; padding-top: 10px; }
-.left-controls { display: flex; align-items: center; gap: 10px; }
-.b-btn { background: rgba(20, 45, 74, 0.9); border: 1px solid #2863ad; color: white; border-radius: 50%; width: 42px; height: 42px; font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: transform 0.2s; }
-.b-btn:active { transform: scale(0.9); }
-.topCoinsBoard { background: linear-gradient(to right, #142d4a, #0c2847); padding: 6px 15px; border-radius: 20px; border: 1px solid #ffd21f; color: #ffd21f; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
-.turnMsg{ color:#fff; font-size:15px; font-weight: bold; background: rgba(0,0,0,0.6); padding: 8px 20px; border-radius: 20px; border: 1px solid #39ff14; flex-grow: 1; text-align: center; margin: 0 10px; box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);}
-
-/* PLAYER HUD */
-.hud-row { display: flex; justify-content: space-between; margin: 8px 0; width: min(94vw, 680px); margin-left: auto; margin-right: auto; }
-.hud-player { display: flex; flex-direction: column; background: #142d4a; padding: 10px; border-radius: 15px; border: 2px solid #234773; width: 48%; box-shadow: 0 4px 12px rgba(0,0,0,0.5); transition: all 0.3s ease; opacity: 0.6; position: relative; }
-.hud-player.active { border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.3); background: #113824; opacity: 1; transform: scale(1.02); z-index: 10; }
-.hud-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.hud-player.reverse .hud-top { flex-direction: row-reverse; }
-
-.empty-slot { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; cursor: pointer; color: #aaa; text-align: center;}
-.hud-player.empty .hud-top { display: none; }
-.hud-player.empty .empty-slot { display: flex; }
-.plus-icon { font-size: 30px; margin-bottom: 5px; color: #39ff14; }
-
-.avatar-box { text-align: center; position: relative; display: flex; flex-direction: column; align-items: center; }
-.avatar-wrapper { position: relative; width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; }
-.avatar-wrapper:active { transform: scale(0.95); }
-.avatar { font-size: 30px; background: #0a1829; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; border: 3px solid #fff; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); overflow: hidden; position: relative; }
-.remote-video{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;border-radius:50%;z-index:4;}
-.video-placeholder { font-size: 10px; color: #aaa; display: none; text-align: center; line-height: 1.1; width: 100%; height: 100%; background: #000; align-items: center; justify-content: center; }
-.avatar.cam-on .emoji-av { display: none; }
-.avatar.cam-on .video-placeholder { display: flex; }
-.runner-emoji { position: absolute; right: -5px; bottom: 0; font-size: 25px; display: none; z-index: 5; text-shadow: 0 0 5px #000; }
-.hud-player.offline .runner-emoji { display: block; animation: bounce 0.5s alternate infinite; }
-@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
-
-.timer-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg); z-index: 3; }
-.timer-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 4; }
-.timer-progress { fill: none; stroke: #39ff14; stroke-width: 4; stroke-dasharray: 176; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
-.timer-progress.danger { stroke: #ed1c24; animation: blinkTimer 1s infinite; }
-@keyframes blinkTimer { 50% { opacity: 0.5; } }
-.hud-name { font-size: 12px; font-weight: 900; margin-top: 5px; color: #fff; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 4px; }
-
-/* MEDIA CONTROLS */
-.media-controls { display: flex; gap: 5px; margin-top: 6px; justify-content: center; background: rgba(0,0,0,0.3); padding: 5px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
-.m-btn { font-size: 12px; cursor: pointer; transition: all 0.2s; background: #39ff14; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 5px rgba(0,0,0,0.5); }
-.m-btn.off { background: #ed1c24; opacity: 0.7; }
-
-/* DICE */
-.dice-box { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.sideDice { width: 75px; height: 75px; border-radius: 16px; background: linear-gradient(145deg,#fff 0%,#f5f5f5 55%,#d7d7d7 100%); border: 3px solid #222; position: relative; box-shadow: inset 2px 2px 0 #fff,inset -3px -4px 0 #c3c3c3,0 5px 0 #111,0 10px 18px rgba(0,0,0,.45); cursor: pointer; display: none; transform-style: preserve-3d; }
-.sideDice.active { display: block; animation: dicePulse 1.5s infinite; }
-.sideDice.rolling { display: block; animation: diceSpin 0.15s linear infinite; }
-.dot { position: absolute; width: 15px; height: 15px; background: #151515; border-radius: 50%; box-shadow: inset 1px 1px 2px rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.45); }
-.top-left { top: 15%; left: 15%; } .top-right { top: 15%; right: 15%; } .middle-left { top: 50%; left: 15%; transform: translateY(-50%); } .middle-right { top: 50%; right: 15%; transform: translateY(-50%); } .bottom-left { bottom: 15%; left: 15%; } .bottom-right { bottom: 15%; right: 15%; } .center-dot { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.dice-val { font-size: 14px; font-weight: 900; color: #ffd21f; margin-top: 8px; min-height: 16px; text-shadow: 1px 1px 2px #000;}
-
-@keyframes dicePulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.1); box-shadow:0 0 20px #ffd21f; } }
-@keyframes diceSpin { 0%{ transform: scale(1) rotate(0deg); } 25%{ transform: scale(1.1) rotate(90deg); } 50%{ transform: scale(1.2) rotate(180deg); } 75%{ transform: scale(1.1) rotate(270deg); } 100%{ transform: scale(1) rotate(360deg); } }
-
-/* BOARD */
-.boardWrap{ width:min(94vw,680px); margin:auto; padding:8px; border-radius:20px; background:#261815; box-shadow: 0 15px 40px rgba(0,0,0,.8); border: 4px solid #4a3b2a; }
-.board{ position:relative; width:100%; aspect-ratio:1/1; overflow:hidden; background:#f6ebd5; border:1px solid #333; }
-.cells{ position:absolute; inset:0; display:grid; grid-template-columns:repeat(15,1fr); grid-template-rows:repeat(15,1fr); z-index:1; }
-.cell{ position:relative; background:#fff; border:1px solid #b2b2b2; }
-.path{ background:#fff; } .path.greenStart{ background:#10a953; } .path.yellowStart{ background:#f0c91b; } .path.blueStart{ background:#2998df; } .path.redStart{ background:#ed1c24; }
-.lane.greenLane{ background:#10a953; } .lane.yellowLane{ background:#f0c91b; } .lane.blueLane{ background:#2998df; } .lane.redLane{ background:#ed1c24; }
-.star{ font-size:clamp(14px,3vw,25px); color:#70757a; display:flex; align-items:center; justify-content:center; } .star::after{ content:'☆'; color: rgba(0,0,0,0.3); font-weight: bold;} .path.greenStart.star::after, .path.yellowStart.star::after, .path.blueStart.star::after, .path.redStart.star::after { color: white; }
-
-/* YARDS */
-.yard{ position:absolute; width:40%; height:40%; z-index:5; padding:5.3%; }
-.yard.red{ left:0; top:0; background:#ed1c24; } .yard.green{ right:0; top:0; background:#10a953; } .yard.blue{ left:0; bottom:0; background:#2998df; } .yard.yellow{ right:0; bottom:0; background:#f0c91b; }
-.yardBox{ position:relative; width:100%; height:100%; background:#fff; border:2px solid rgba(0,0,0,.15); box-shadow: inset 0 0 10px rgba(0,0,0,0.2); }
-.homeSpot{ position:absolute; width:27%; aspect-ratio:1/1; border-radius:50%; display:flex; align-items:center; justify-content:center; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-.homeSpot::before{ content:''; width:75%; height:75%; border-radius:50%; }
-.red .homeSpot::before{ background:#ed1c24; } .green .homeSpot::before{ background:#10a953; } .blue .homeSpot::before{ background:#2998df; } .yellow .homeSpot::before{ background:#d7b400; }
-.hs1{ left:12%; top:12%; } .hs2{ right:12%; top:12%; } .hs3{ left:12%; bottom:12%; } .hs4{ right:12%; bottom:12%; }
-.center{ position:absolute; left:40%; top:40%; width:20%; height:20%; z-index:7; overflow:hidden; border: 1px solid #333; background: #fff;}
-.centerGreen { position:absolute; top:0; left:0; width:100%; height:100%; background:#10a953; clip-path:polygon(0 0, 100% 0, 50% 50%); }
-.centerYellow { position:absolute; top:0; left:0; width:100%; height:100%; background:#f0c91b; clip-path:polygon(100% 0, 100% 100%, 50% 50%); }
-.centerBlue { position:absolute; top:0; left:0; width:100%; height:100%; background:#2998df; clip-path:polygon(100% 100%, 0 100%, 50% 50%); }
-.centerRed { position:absolute; top:0; left:0; width:100%; height:100%; background:#ed1c24; clip-path:polygon(0 100%, 0 0, 50% 50%); }
-
-/* TOKENS */
-.tokenLayer{ position:absolute; inset:0; z-index:40; pointer-events:none; }
-.token{ position:absolute; width: 7.5%; aspect-ratio:1/1; transform:translate(-50%,-50%); cursor:pointer; pointer-events:auto; z-index:50; transition: left .2s ease, top .2s ease, transform .2s ease; }
-.token.movable::before { content: ''; position: absolute; top: -15%; left: -15%; right: -15%; bottom: -15%; border: 3px dashed #39ff14; border-radius: 50%; animation: rotateRing 2s linear infinite; box-shadow: 0 0 8px #39ff14; z-index: -1; }
-@keyframes rotateRing { 100% { transform: rotate(360deg); } }
-.pawn{ position:absolute; left:50%; top:50%; width:72%; height:86%; transform:translate(-50%,-50%); }
-.pawnHead{ position:absolute; left:50%; top:0; width:55%; aspect-ratio:1/1; transform:translateX(-50%); border-radius:50%; border:1px solid rgba(0,0,0,.5); }
-.pawnBody{ position:absolute; left:50%; bottom:3%; width:78%; height:60%; transform:translateX(-50%); border-radius:48% 48% 25% 25%; border:1px solid rgba(0,0,0,.5); }
-.pawnBase{ position:absolute; left:50%; bottom:-5%; width:95%; height:25%; transform:translateX(-50%); border-radius:50%; border:1px solid rgba(0,0,0,.5); box-shadow: 0 3px 4px rgba(0,0,0,.5); }
-.token.red .pawnHead, .token.red .pawnBody, .token.red .pawnBase{ background:linear-gradient(135deg,#ff3333,#990000); }
-.token.green .pawnHead, .token.green .pawnBody, .token.green .pawnBase{ background:linear-gradient(135deg,#33cc33,#006600); }
-.token.blue .pawnHead, .token.blue .pawnBody, .token.blue .pawnBase{ background:linear-gradient(135deg,#3399ff,#003399); }
-.token.yellow .pawnHead, .token.yellow .pawnBody, .token.yellow .pawnBase{ background:linear-gradient(135deg,#ffff33,#b38f00); }
-
-/* MODALS */
-.modal{ position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:15px; background:rgba(0,0,0,.9); backdrop-filter: blur(8px); }
-.modal.hide{ display:none !important; }
-.modalBox{ position: relative; width:min(390px,100%); background:linear-gradient(180deg, #174278, #0c2847); border:2px solid #2863ad; border-radius:20px; padding:25px 20px; box-shadow:0 20px 60px rgba(0,0,0,.9); }
-.modalTitle{ text-align:center; font-size:25px; font-weight:900; margin-bottom:15px; color:#fff;}
-.label{ display:block; margin:12px 0 6px; color:#ffd21f; font-size:14px; font-weight:800; }
-.input-box { width:100%; height:45px; border:2px solid #2863ad; background:#0a1829; color:#fff; border-radius:10px; padding:0 12px; font-size:15px; font-weight: bold; outline:none; margin-bottom: 10px; }
-.select{ width:100%; height:45px; border:2px solid #2863ad; background:#0a1829; color:#fff; border-radius:10px; padding:0 12px; font-size:15px; font-weight: bold; outline:none; }
-.start{ width:100%; height:50px; margin-top:15px; border:0; border-radius:12px; background:linear-gradient(to bottom, #00d2ff, #3a7bd5); color:#fff; font-weight:900; font-size:16px; cursor:pointer; text-transform: uppercase; }
-.closeBtn { position: absolute; right: -10px; top: -10px; background: red; color: white; border: 2px solid white; border-radius: 50%; width: 35px; height: 35px; font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.5); z-index: 10; transition: transform 0.2s;}
-.closeBtn:active { transform: scale(0.9); }
-
-/* CHAT */
-.chat-wrap{width:min(680px,94vw);margin:10px auto 0;background:#102c49;border:1px solid #2863ad;border-radius:14px;padding:8px;}
-.chat-messages{height:110px;overflow-y:auto;background:#081a2e;border-radius:10px;padding:7px;font-size:12px;}
-.chat-msg{margin:4px 0;padding:5px 8px;border-radius:9px;background:#183b5f;color:#fff;word-break:break-word;}
-.chat-form{display:flex;gap:6px;margin-top:7px;}
-.chat-input{flex:1;min-width:0;background:#071625;color:#fff;border:1px solid #2863ad;border-radius:9px;padding:9px;}
-.chat-send{background:#10a953;color:#fff;border:0;border-radius:9px;padding:0 14px;font-weight:800; cursor:pointer;}
-.login-note{font-size:12px;color:#b9d7f5;text-align:center;margin:8px 0;}
-
-/* PROFILE CARD EXPANDED */
-.profile-card-expanded { text-align: center; padding: 10px; }
-.big-avatar { font-size: 60px; background: #0a1829; width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; border: 4px solid #ffd21f; box-shadow: 0 0 20px rgba(255, 210, 31, 0.3); position: relative; overflow: hidden; }
-.profile-video{width:240px;height:240px;max-width:80vw;max-height:45vh;object-fit:cover;border-radius:18px;background:#000;border:3px solid #39ff14;display:none;margin:0 auto 12px;}
-.profile-avatar-large{width:180px;height:180px;border-radius:22px;background:#0a1829;border:3px solid #ffd21f;display:flex;align-items:center;justify-content:center;font-size:92px;margin:0 auto 12px;}
-
-/* SHARE PLATFORMS */
-.share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
-.share-icon { display: flex; flex-direction: column; align-items: center; color: white; cursor: pointer; font-size: 13px; gap: 8px;}
-.share-icon div { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
-.bg-wa { background: #25D366; } .bg-fb { background: #1877F2; } .bg-ig { background: #E1306C; } .bg-tg { background: #0088cc; } .bg-link { background: #888; }
-
-.winnerEmoji{ font-size:60px; text-align: center; } .winnerName{ font-size:24px; font-weight:900; margin:10px 0 15px; text-align: center; color: #39ff14;}
-.rank-list { text-align: center; font-size: 16px; font-weight: bold; color: white; line-height: 1.5; margin-bottom: 15px;}
-
-@media(max-width:500px){
-  #ludoGame{ padding:5px 4px 60px; }
-  .boardWrap{ padding:4px; border-radius:14px; }
-  .sideDice{ width:55px; height:55px; border-radius: 12px;}
-  .avatar-wrapper { width: 50px; height: 50px; }
-  .avatar { width: 40px; height: 40px; font-size: 20px; }
-  .hud-player { padding: 6px; border-radius: 12px; }
-  .m-btn { font-size: 11px; width: 20px; height: 20px; }
-}
-/*]]>*/
-</style>
+<!-- CSS File Link -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -183,15 +14,15 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
     <div class='homeLogo'>👑 <b>LUDO</b> PREMIUM</div>
     <div class='home-btn-group'>
         <button class='homeBtn btn-friends' onclick='startPlayWithFriends()'>🎮 Play Online with Friends</button>
-        <button class='homeBtn btn-match' onclick='openConfigModal(&quot;online&quot;)'>🌐 Online Match</button>
-        <button class='homeBtn btn-local' onclick='openLocalGameModal()'>👥 Local Game &#8212; Same Device</button>
-        <button class='homeBtn btn-online' onclick='openConfigModal(&quot;ai&quot;)'>🤖 Play With AI</button>
+        <button class='homeBtn btn-match' onclick='openConfigModal("online")'>🌐 Online Match</button>
+        <button class='homeBtn btn-local' onclick='openLocalGameModal()'>👥 Local Game — Same Device</button>
+        <button class='homeBtn btn-online' onclick='openConfigModal("ai")'>🤖 Play With AI</button>
         <button class='homeBtn btn-share' onclick='openShareModal()'>📤 Share Game</button>
     </div>
 
     <!-- LIVE PLAYERS (REAL-TIME SIMULATION) -->
     <div class='online-section'>
-        <div class='online-title'><span class='live-dot'/> Live Players Online</div>
+        <div class='online-title'><span class='live-dot'></span> Live Players Online</div>
         <div id='playerListContainer'>
             <div style='text-align:center; color:#aaa; padding:10px; line-height:1.5;'>No fake players. Tap <b>Online Match</b> to find a real opponent.</div>
         </div>
@@ -216,19 +47,19 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
          <div class='hud-player' id='hud-red'>
             <div class='hud-top'>
                <div class='avatar-box'>
-                  <div class='avatar-wrapper' onclick='toggleProfileCard(&quot;red&quot;)'>
+                  <div class='avatar-wrapper' onclick='toggleProfileCard("red")'>
                      <svg class='timer-svg'><circle class='timer-bg' cx='50%' cy='50%' r='46%'/><circle class='timer-progress' cx='50%' cy='50%' id='timer-red' r='46%'/></svg>
-                     <div class='avatar' id='av-red' style='border-color: #ed1c24;'><span class='emoji-av'>👨</span><video autoplay='autoplay' class='remote-video' id='vid-red' playsinline='playsinline'/><span class='video-placeholder'>Cam On</span></div>
+                     <div class='avatar' id='av-red' style='border-color: #ed1c24;'><span class='emoji-av'>👨</span><video autoplay='autoplay' class='remote-video' id='vid-red' playsinline='playsinline'></video><span class='video-placeholder'>Cam On</span></div>
                      <div class='runner-emoji'>🏃</div>
                   </div>
                   <div class='hud-name' id='name-red'>Red</div>
                   <div class='media-controls'>
-                     <span class='m-btn off mic' onclick='toggleMedia(this, &apos;mic&apos;)'><i>🎤</i></span>
-                     <span class='m-btn speaker' onclick='toggleMedia(this, &apos;speaker&apos;)'><i>🔊</i></span>
-                     <span class='m-btn off cam' onclick='toggleMedia(this, &apos;cam&apos;, &apos;red&apos;)'><i>📷</i></span>
+                     <span class='m-btn off mic' onclick='toggleMedia(this, "mic")'><i>🎤</i></span>
+                     <span class='m-btn speaker' onclick='toggleMedia(this, "speaker")'><i>🔊</i></span>
+                     <span class='m-btn off cam' onclick='toggleMedia(this, "cam", "red")'><i>📷</i></span>
                   </div>
                </div>
-               <div class='dice-box'><div class='sideDice' id='dice-red'/><div class='dice-val' id='val-red'/></div>
+               <div class='dice-box'><div class='sideDice' id='dice-red'></div><div class='dice-val' id='val-red'></div></div>
             </div>
             <div class='empty-slot' onclick='openShareModal()'><span class='plus-icon'>+👱</span><div>Invite Friend</div></div>
          </div>
@@ -236,19 +67,19 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
          <div class='hud-player reverse' id='hud-green'>
             <div class='hud-top'>
                <div class='avatar-box'>
-                  <div class='avatar-wrapper' onclick='toggleProfileCard(&quot;green&quot;)'>
+                  <div class='avatar-wrapper' onclick='toggleProfileCard("green")'>
                      <svg class='timer-svg'><circle class='timer-bg' cx='50%' cy='50%' r='46%'/><circle class='timer-progress' cx='50%' cy='50%' id='timer-green' r='46%'/></svg>
-                     <div class='avatar' id='av-green' style='border-color: #10a953;'><span class='emoji-av'>👩</span><video autoplay='autoplay' class='remote-video' id='vid-green' playsinline='playsinline'/><span class='video-placeholder'>Cam On</span></div>
+                     <div class='avatar' id='av-green' style='border-color: #10a953;'><span class='emoji-av'>👩</span><video autoplay='autoplay' class='remote-video' id='vid-green' playsinline='playsinline'></video><span class='video-placeholder'>Cam On</span></div>
                      <div class='runner-emoji'>🏃</div>
                   </div>
                   <div class='hud-name' id='name-green'>Green</div>
                   <div class='media-controls'>
-                     <span class='m-btn off mic' onclick='toggleMedia(this, &apos;mic&apos;)'><i>🎤</i></span>
-                     <span class='m-btn speaker' onclick='toggleMedia(this, &apos;speaker&apos;)'><i>🔊</i></span>
-                     <span class='m-btn off cam' onclick='toggleMedia(this, &apos;cam&apos;, &apos;green&apos;)'><i>📷</i></span>
+                     <span class='m-btn off mic' onclick='toggleMedia(this, "mic")'><i>🎤</i></span>
+                     <span class='m-btn speaker' onclick='toggleMedia(this, "speaker")'><i>🔊</i></span>
+                     <span class='m-btn off cam' onclick='toggleMedia(this, "cam", "green")'><i>📷</i></span>
                   </div>
                </div>
-               <div class='dice-box'><div class='sideDice' id='dice-green'/><div class='dice-val' id='val-green'/></div>
+               <div class='dice-box'><div class='sideDice' id='dice-green'></div><div class='dice-val' id='val-green'></div></div>
             </div>
             <div class='empty-slot' onclick='openShareModal()'><span class='plus-icon'>+👱</span><div>Invite Friend</div></div>
          </div>
@@ -257,13 +88,13 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
       <!-- BOARD -->
       <div class='boardWrap'>
         <div class='board' id='board'>
-          <div class='cells' id='cells'/>
-          <div class='yard red' data-color='red'><div class='yardBox'><div class='homeSpot hs1'/><div class='homeSpot hs2'/><div class='homeSpot hs3'/><div class='homeSpot hs4'/></div></div>
-          <div class='yard green' data-color='green'><div class='yardBox'><div class='homeSpot hs1'/><div class='homeSpot hs2'/><div class='homeSpot hs3'/><div class='homeSpot hs4'/></div></div>
-          <div class='yard blue' data-color='blue'><div class='yardBox'><div class='homeSpot hs1'/><div class='homeSpot hs2'/><div class='homeSpot hs3'/><div class='homeSpot hs4'/></div></div>
-          <div class='yard yellow' data-color='yellow'><div class='yardBox'><div class='homeSpot hs1'/><div class='homeSpot hs2'/><div class='homeSpot hs3'/><div class='homeSpot hs4'/></div></div>
-          <div class='center'><div class='centerGreen'/><div class='centerYellow'/><div class='centerBlue'/><div class='centerRed'/></div>
-          <div class='tokenLayer' id='tokenLayer'/>
+          <div class='cells' id='cells'></div>
+          <div class='yard red' data-color='red'><div class='yardBox'><div class='homeSpot hs1'></div><div class='homeSpot hs2'></div><div class='homeSpot hs3'></div><div class='homeSpot hs4'></div></div></div>
+          <div class='yard green' data-color='green'><div class='yardBox'><div class='homeSpot hs1'></div><div class='homeSpot hs2'></div><div class='homeSpot hs3'></div><div class='homeSpot hs4'></div></div></div>
+          <div class='yard blue' data-color='blue'><div class='yardBox'><div class='homeSpot hs1'></div><div class='homeSpot hs2'></div><div class='homeSpot hs3'></div><div class='homeSpot hs4'></div></div></div>
+          <div class='yard yellow' data-color='yellow'><div class='yardBox'><div class='homeSpot hs1'></div><div class='homeSpot hs2'></div><div class='homeSpot hs3'></div><div class='homeSpot hs4'></div></div></div>
+          <div class='center'><div class='centerGreen'></div><div class='centerYellow'></div><div class='centerBlue'></div><div class='centerRed'></div></div>
+          <div class='tokenLayer' id='tokenLayer'></div>
         </div>
       </div>
 
@@ -272,19 +103,19 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
          <div class='hud-player' id='hud-blue'>
             <div class='hud-top'>
                <div class='avatar-box'>
-                  <div class='avatar-wrapper' onclick='toggleProfileCard(&quot;blue&quot;)'>
+                  <div class='avatar-wrapper' onclick='toggleProfileCard("blue")'>
                      <svg class='timer-svg'><circle class='timer-bg' cx='50%' cy='50%' r='46%'/><circle class='timer-progress' cx='50%' cy='50%' id='timer-blue' r='46%'/></svg>
-                     <div class='avatar' id='av-blue' style='border-color: #2998df;'><span class='emoji-av'>👦</span><video autoplay='autoplay' class='remote-video' id='vid-blue' playsinline='playsinline'/><span class='video-placeholder'>Cam On</span></div>
+                     <div class='avatar' id='av-blue' style='border-color: #2998df;'><span class='emoji-av'>👦</span><video autoplay='autoplay' class='remote-video' id='vid-blue' playsinline='playsinline'></video><span class='video-placeholder'>Cam On</span></div>
                      <div class='runner-emoji'>🏃</div>
                   </div>
                   <div class='hud-name' id='name-blue'>Blue</div>
                   <div class='media-controls'>
-                     <span class='m-btn off mic' onclick='toggleMedia(this, &apos;mic&apos;)'><i>🎤</i></span>
-                     <span class='m-btn speaker' onclick='toggleMedia(this, &apos;speaker&apos;)'><i>🔊</i></span>
-                     <span class='m-btn off cam' onclick='toggleMedia(this, &apos;cam&apos;, &apos;blue&apos;)'><i>📷</i></span>
+                     <span class='m-btn off mic' onclick='toggleMedia(this, "mic")'><i>🎤</i></span>
+                     <span class='m-btn speaker' onclick='toggleMedia(this, "speaker")'><i>🔊</i></span>
+                     <span class='m-btn off cam' onclick='toggleMedia(this, "cam", "blue")'><i>📷</i></span>
                   </div>
                </div>
-               <div class='dice-box'><div class='sideDice' id='dice-blue'/><div class='dice-val' id='val-blue'/></div>
+               <div class='dice-box'><div class='sideDice' id='dice-blue'></div><div class='dice-val' id='val-blue'></div></div>
             </div>
             <div class='empty-slot' onclick='openShareModal()'><span class='plus-icon'>+👱</span><div>Invite Friend</div></div>
          </div>
@@ -292,19 +123,19 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
          <div class='hud-player reverse' id='hud-yellow'>
             <div class='hud-top'>
                <div class='avatar-box'>
-                  <div class='avatar-wrapper' onclick='toggleProfileCard(&quot;yellow&quot;)'>
+                  <div class='avatar-wrapper' onclick='toggleProfileCard("yellow")'>
                      <svg class='timer-svg'><circle class='timer-bg' cx='50%' cy='50%' r='46%'/><circle class='timer-progress' cx='50%' cy='50%' id='timer-yellow' r='46%'/></svg>
-                     <div class='avatar' id='av-yellow' style='border-color: #f0c91b;'><span class='emoji-av'>👧</span><video autoplay='autoplay' class='remote-video' id='vid-yellow' playsinline='playsinline'/><span class='video-placeholder'>Cam On</span></div>
+                     <div class='avatar' id='av-yellow' style='border-color: #f0c91b;'><span class='emoji-av'>👧</span><video autoplay='autoplay' class='remote-video' id='vid-yellow' playsinline='playsinline'></video><span class='video-placeholder'>Cam On</span></div>
                      <div class='runner-emoji'>🏃</div>
                   </div>
                   <div class='hud-name' id='name-yellow'>Yellow</div>
                   <div class='media-controls'>
-                     <span class='m-btn off mic' onclick='toggleMedia(this, &apos;mic&apos;)'><i>🎤</i></span>
-                     <span class='m-btn speaker' onclick='toggleMedia(this, &apos;speaker&apos;)'><i>🔊</i></span>
-                     <span class='m-btn off cam' onclick='toggleMedia(this, &apos;cam&apos;, &apos;yellow&apos;)'><i>📷</i></span>
+                     <span class='m-btn off mic' onclick='toggleMedia(this, "mic")'><i>🎤</i></span>
+                     <span class='m-btn speaker' onclick='toggleMedia(this, "speaker")'><i>🔊</i></span>
+                     <span class='m-btn off cam' onclick='toggleMedia(this, "cam", "yellow")'><i>📷</i></span>
                   </div>
                </div>
-               <div class='dice-box'><div class='sideDice' id='dice-yellow'/><div class='dice-val' id='val-yellow'/></div>
+               <div class='dice-box'><div class='sideDice' id='dice-yellow'></div><div class='dice-val' id='val-yellow'></div></div>
             </div>
             <div class='empty-slot' onclick='openShareModal()'><span class='plus-icon'>+👱</span><div>Invite Friend</div></div>
          </div>
@@ -315,14 +146,14 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
 <!-- ONLINE CHAT -->
 <div class='chat-wrap' id='chatWrap' style='display:none;'>
   <div style='font-weight:900;color:#ffd21f;margin:2px 4px 6px;'>💬 Match Chat <span style='font-size:10px;color:#9ec5e8;'>(max 50 words/message)</span></div>
-  <div class='chat-messages' id='chatMessages'/>
-  <div class='chat-form'><input class='chat-input' id='chatInput' maxlength='500' onkeydown='if(event.key===&apos;Enter&apos;){sendChatMessage();}' placeholder='Type message...'/><button class='chat-send' onclick='sendChatMessage()'>SEND</button></div>
+  <div class='chat-messages' id='chatMessages'></div>
+  <div class='chat-form'><input class='chat-input' id='chatInput' maxlength='500' onkeydown='if(event.key==="Enter"){sendChatMessage();}' placeholder='Type message...'/><button class='chat-send' onclick='sendChatMessage()'>SEND</button></div>
 </div>
 
 <!-- FIREBASE LOGIN MODAL -->
 <div class='modal hide' id='loginModal'>
   <div class='modalBox'>
-    <button class='closeBtn' onclick='document.getElementById(&apos;loginModal&apos;).classList.add(&apos;hide&apos;)'>X</button>
+    <button class='closeBtn' onclick='document.getElementById("loginModal").classList.add("hide")'>X</button>
     <div class='modalTitle'>🔐 Login to Join</div>
     <div class='login-note'>Friend ke invite room me join karne ke liye Firebase account se login karein.</div>
     <button class='start' onclick='loginWithGoogle()'>CONTINUE WITH GOOGLE</button>
@@ -332,7 +163,7 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
 <!-- PROFILE MODAL (EXPANDED) -->
 <div class='modal hide' id='profileModal'>
   <div class='modalBox'>
-    <button class='closeBtn' onclick='document.getElementById(&apos;profileModal&apos;).classList.add(&apos;hide&apos;)'>X</button>
+    <button class='closeBtn' onclick='document.getElementById("profileModal").classList.add("hide")'>X</button>
     <div class='modalTitle'>👤 Create Profile</div>
     <label class='label'>Name</label>
     <input class='input-box' id='pName' maxlength='15' placeholder='Your Name' type='text'/>
@@ -353,7 +184,7 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
 <!-- DYNAMIC PROFILE VIEW MODAL -->
 <div class='modal hide' id='playerProfileViewModal'>
   <div class='modalBox'>
-     <div id='playerProfileViewContent'/>
+     <div id='playerProfileViewContent'></div>
   </div>
 </div>
 
@@ -373,7 +204,7 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
 <!-- START CONFIG MODAL -->
 <div class='modal hide' id='startModal'>
   <div class='modalBox'>
-    <button class='closeBtn' onclick='document.getElementById(&apos;startModal&apos;).classList.add(&apos;hide&apos;)'>X</button>
+    <button class='closeBtn' onclick='document.getElementById("startModal").classList.add("hide")'>X</button>
     <div class='modalTitle' id='configTitle'>🎲 Setup Game</div>
     
     <!-- AI Difficulty Selection -->
@@ -395,7 +226,7 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
         <option value='100'>100 💰</option>
         <option selected='selected' value='500'>500 💰</option>
         <option value='1000'>1000 💰</option>
-        <option value='any'>Any Coins &#8212; 100 / 500 / 1000 💰</option>
+        <option value='any'>Any Coins — 100 / 500 / 1000 💰</option>
     </select>
     <button class='start' onclick='startGame(false)'>PAY &amp; START</button>
   </div>
@@ -404,9 +235,9 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
 <!-- LOCAL GAME MODAL -->
 <div class='modal hide' id='localGameModal'>
   <div class='modalBox'>
-    <button class='closeBtn' onclick='document.getElementById(&apos;localGameModal&apos;).classList.add(&apos;hide&apos;)'>X</button>
+    <button class='closeBtn' onclick='document.getElementById("localGameModal").classList.add("hide")'>X</button>
     <div class='modalTitle'>👥 Local Game</div>
-    <div style='color:#cfe4ff;text-align:center;font-size:13px;margin-bottom:14px;'>2&#8211;4 players can play face-to-face on the same device. No AI and no online opponent.</div>
+    <div style='color:#cfe4ff;text-align:center;font-size:13px;margin-bottom:14px;'>2–4 players can play face-to-face on the same device. No AI and no online opponent.</div>
     <label class='label'>Players</label>
     <select class='select' id='localPlayerCount'><option value='2'>2 Players</option><option value='3'>3 Players</option><option selected='selected' value='4'>4 Players</option></select>
     <button class='start' onclick='startLocalGame()'>START LOCAL GAME</button>
@@ -416,15 +247,15 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
 <!-- SHARE MODAL -->
 <div class='modal hide' id='shareModal'>
   <div class='modalBox'>
-    <button class='closeBtn' onclick='document.getElementById(&apos;shareModal&apos;).classList.add(&apos;hide&apos;)'>X</button>
+    <button class='closeBtn' onclick='document.getElementById("shareModal").classList.add("hide")'>X</button>
     <div class='modalTitle'>📤 Share &amp; Invite</div>
     <div style='text-align:center; color:#fff; font-size:14px;'>Send link to your friends to play!</div>
     <div class='share-grid'>
-        <div class='share-icon' onclick='shareTo(&apos;whatsapp&apos;)'><div class='bg-wa'>📱</div>WhatsApp</div>
-        <div class='share-icon' onclick='shareTo(&apos;facebook&apos;)'><div class='bg-fb'>📘</div>Facebook</div>
-        <div class='share-icon' onclick='shareTo(&apos;instagram&apos;)'><div class='bg-ig'>📸</div>Instagram</div>
-        <div class='share-icon' onclick='shareTo(&apos;telegram&apos;)'><div class='bg-tg'>&#9992;&#65039;</div>Telegram</div>
-        <div class='share-icon' onclick='shareTo(&apos;copy&apos;)'><div class='bg-link'>🔗</div>Copy Link</div>
+        <div class='share-icon' onclick='shareTo("whatsapp")'><div class='bg-wa'>📱</div>WhatsApp</div>
+        <div class='share-icon' onclick='shareTo("facebook")'><div class='bg-fb'>📘</div>Facebook</div>
+        <div class='share-icon' onclick='shareTo("instagram")'><div class='bg-ig'>📸</div>Instagram</div>
+        <div class='share-icon' onclick='shareTo("telegram")'><div class='bg-tg'>✈️</div>Telegram</div>
+        <div class='share-icon' onclick='shareTo("copy")'><div class='bg-link'>🔗</div>Copy Link</div>
     </div>
   </div>
 </div>
@@ -435,1111 +266,18 @@ html,body{ margin:0; padding:0; width:100%; min-height:100%; background:#0c2847;
     <div class='modalTitle'>🏆 MATCH OVER</div>
     <div class='winnerEmoji'>🎉</div>
     <div class='winnerName' id='winnerName'>Green Wins</div>
-    <div class='rank-list' id='rankList'/>
+    <div class='rank-list' id='rankList'></div>
     <button class='start' onclick='goHome()'>COLLECT COINS &amp; HOME</button>
   </div>
 </div>
 
-<script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js'/>
-<script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js'/>
-<script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js'/>
-<script src='https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js'/>
-<script type='text/javascript'>
-//<![CDATA[
-(function(){
-'use strict';
-
-const FIREBASE_CONFIG = {
-  apiKey: 'PASTE_FIREBASE_API_KEY',
-  authDomain: 'PASTE_FIREBASE_AUTH_DOMAIN',
-  databaseURL: 'PASTE_FIREBASE_DATABASE_URL',
-  projectId: 'PASTE_FIREBASE_PROJECT_ID',
-  storageBucket: 'PASTE_FIREBASE_STORAGE_BUCKET',
-  messagingSenderId: 'PASTE_FIREBASE_MESSAGING_SENDER_ID',
-  appId: 'PASTE_FIREBASE_APP_ID'
-};
-// Optional App Check Site Key if implemented
-const FIREBASE_APPCHECK_SITE_KEY = 'PASTE_FIREBASE_APPCHECK_SITE_KEY';
-
-const SECURITY_CONFIG = {
-    MAX_CHAT_CHARS: 500
-};
-
-let db = null;
-let fbUser = null;
-let matchRef = null;
-let matchRoomId = null;
-let onlineHost = false;
-let onlinePlayerIndex = -1;
-let matchPollTimer = null;
-let onlinePaid = false;
-
-let peer = null;
-let peerConnections = {};
-let localMediaStream = null;
-let remoteMediaStreams = {};
-
-let players = [], current = 0, dice = 0, rolled = false, rolling = false;
-let moving = false, sixCount = 0, started = false;
-let turnTimer = null, timeLeft = 20;
-let turnSerial = 0, cpuTimer = null;
-let userProfile = null, totalCoins = 10000, entryFee = 500;
-let ranks = [];
-let audioCtx = null;
-let currentMode = 'local';
-let onlinePlayerInterval = null;
-let aiLevel = 'easy';
-
-const COLORS = ['green', 'yellow', 'blue', 'red'];
-const COLOR_NAMES = { green:'Green', yellow:'Yellow', blue:'Blue', red:'Red' };
-const COLOR_HEX = { green:'#10a953', yellow:'#f0c91b', blue:'#2998df', red:'#ed1c24' };
-
-const TRACK = [[6,0], [6,1], [6,2], [6,3], [6,4], [6,5], [5,6], [4,6], [3,6], [2,6], [1,6], [0,6], [0,7], [0,8], [1,8], [2,8], [3,8], [4,8], [5,8], [6,9], [6,10], [6,11], [6,12], [6,13], [6,14], [7,14], [8,14], [8,13], [8,12], [8,11], [8,10], [8,9], [9,8], [10,8], [11,8], [12,8], [13,8], [14,8], [14,7], [14,6], [13,6], [12,6], [11,6], [10,6], [9,6], [8,5], [8,4], [8,3], [8,2], [8,1], [8,0], [7,0]];
-const START_INDEX = { red: 1, green: 14, yellow: 27, blue: 40 };
-const SAFE = [1, 9, 14, 22, 27, 35, 40, 48];
-const HOME_LANES = { green:[ [1,7], [2,7], [3,7], [4,7], [5,7] ], yellow:[ [7,13], [7,12], [7,11], [7,10], [7,9] ], blue:[ [13,7], [12,7], [11,7], [10,7], [9,7] ], red:[ [7,1], [7,2], [7,3], [7,4], [7,5] ] };
-const HOME_POS = { red:[{t:10.2, l:10.2}, {t:10.2, l:29.8}, {t:29.8, l:10.2}, {t:29.8, l:29.8}], green:[{t:10.2, l:70.2}, {t:10.2, l:89.8}, {t:29.8, l:70.2}, {t:29.8, l:89.8}], blue:[{t:70.2, l:10.2}, {t:70.2, l:29.8}, {t:89.8, l:10.2}, {t:89.8, l:29.8}], yellow:[{t:70.2, l:70.2}, {t:70.2, l:89.8}, {t:89.8, l:70.2}, {t:89.8, l:89.8}] };
-
-const cells = document.getElementById('cells');
-const tokenLayer = document.getElementById('tokenLayer');
-const turnMsg = document.getElementById('turnMsg');
-
-// --- UTILS & SECURITY ---
-function firebaseConfigured() { return FIREBASE_CONFIG.apiKey !== 'PASTE_FIREBASE_API_KEY'; }
-function validUid(uid) { return typeof uid === 'string' && uid.length > 5; }
-function securityFail(msg) { console.warn("Security Alert: " + msg); }
-function secureOnlineAllowed() { return firebaseConfigured(); }
-
-function validateActionPacket(action, payload, fromUid) {
-    if(!validUid(fromUid)) return false;
-    if(action === 'move' && (typeof payload.index !== 'number' || payload.index < 0 || payload.index > 3)) return false;
-    if(action !== 'roll' && action !== 'move') return false;
-    return true;
-}
-
-function validatePlayerState(p) {
-    if(!p || typeof p.id !== 'number' || !Array.isArray(p.tokens) || p.tokens.length !== 4) return false;
-    for(let i=0; i<4; i++){ if(typeof p.tokens[i] !== 'number' || p.tokens[i] < 0 || p.tokens[i] > 57) return false; }
-    return true;
-}
-
-function validateGameState(state) {
-    if(!state || typeof state !== 'object') return false;
-    if(typeof state.current !== 'number' || state.current < 0 || state.current > 3) return false;
-    if(typeof state.dice !== 'number' || state.dice < 0 || state.dice > 6) return false;
-    if(Array.isArray(state.players)){ for(let p of state.players){ if(p && !validatePlayerState(p)) return false; } }
-    return true;
-}
-
-function coinChoice() { return document.getElementById('entryFeeSelect').value; }
-function onlineCount() { return parseInt(document.getElementById('playerCount').value, 10); }
-function roomId() { return 'room_' + Math.random().toString(36).substring(2, 10) + Date.now(); }
-function onlinePlayer(id, color, feeParam) {
-    return {
-        id: id, color: color, name: userProfile.name, avatar: userProfile.avatar, flag: userProfile.flag,
-        requestedFee: feeParam, cpu: false, offline: false, active: true, tokens: [0,0,0,0], rank: 0, uid: fbUser.uid
-    };
-}
-
-// --- FULLSCREEN & AUDIO ---
-window.toggleFullScreen = function() {
-    if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(e => {}); } 
-    else { if (document.exitFullscreen) document.exitFullscreen(); }
-};
-window.playAudio = function(type) {
-    if(!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){} }
-    if(!audioCtx || audioCtx.state === 'suspended') return;
-    let osc = audioCtx.createOscillator(); let gain = audioCtx.createGain();
-    osc.connect(gain); gain.connect(audioCtx.destination); let now = audioCtx.currentTime;
-    if(type === 'roll') { osc.frequency.setValueAtTime(400, now); osc.frequency.exponentialRampToValueAtTime(100, now + 0.1); gain.gain.setValueAtTime(0.3, now); gain.gain.linearRampToValueAtTime(0.01, now + 0.1); osc.start(now); osc.stop(now + 0.1); }
-    else if(type === 'move') { osc.type='sine'; osc.frequency.setValueAtTime(600, now); gain.gain.setValueAtTime(0.2, now); gain.gain.linearRampToValueAtTime(0.01, now+0.05); osc.start(now); osc.stop(now+0.05); }
-};
-
-// --- PROFILE & COINS ---
-window.loadCoins = function() {
-    let c = localStorage.getItem('ludoCoins');
-    let lastLogin = localStorage.getItem('ludoLastLogin');
-    let now = Date.now();
-    if(!c) { totalCoins = 10000; } 
-    else { 
-        totalCoins = parseInt(c, 10); 
-        if(lastLogin && (now - parseInt(lastLogin)) > 3600000) {
-            if(totalCoins < 10000) {
-                totalCoins += 10000;
-                alert("Welcome Back! You received 10,000 💰 hourly bonus.");
-            }
-        }
-    }
-    localStorage.setItem('ludoCoins', totalCoins);
-    localStorage.setItem('ludoLastLogin', now);
-    document.getElementById('coinCountBoard').innerText = totalCoins;
-};
-
-window.saveProfile = function() {
-    userProfile = {
-        name: (document.getElementById('pName').value||'Guest').trim().slice(0,15),
-        avatar: document.getElementById('pAvatar').value,
-        flag: document.getElementById('pCountry').value.split('|')[1],
-        age: Math.max(1, parseInt(document.getElementById('pAge').value||18, 10)),
-        gender: document.getElementById('pGender').value
-    };
-    localStorage.setItem('ludoProfile', JSON.stringify(userProfile));
-    if(!localStorage.getItem('ludoCoins')) localStorage.setItem('ludoCoins', 10000);
-    document.getElementById('profileModal').classList.add('hide'); 
-    loadCoins();
-    const invite = new URLSearchParams(location.search).get('invite');
-    if(invite) joinFriendRoom(invite);
-};
-
-window.loginWithGoogle = async function(){
-  try{
-    await ensureFirebaseBase();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const result = await firebase.auth().signInWithPopup(provider);
-    fbUser = result.user;
-    const existing = localStorage.getItem('ludoProfile');
-    if(!existing){
-      document.getElementById('loginModal').classList.add('hide');
-      document.getElementById('pName').value = (result.user.displayName||'Player').slice(0,15);
-      document.getElementById('profileModal').classList.remove('hide');
-      return;
-    }
-    userProfile = JSON.parse(existing);
-    document.getElementById('loginModal').classList.add('hide');
-    const invite = new URLSearchParams(location.search).get('invite');
-    if(invite) await joinFriendRoom(invite);
-  }catch(e){console.error(e);alert('Login failed: '+e.message);}
-};
-
-window.ensureFirebaseBase = async function(){
-    if(!firebaseConfigured()) throw new Error('Firebase config missing');
-    if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-    db = firebase.database();
-    return firebase.auth();
-};
-
-window.ensureOnline = async function(){
-    await ensureFirebaseBase();
-    if(!firebase.auth().currentUser){
-        const result = await firebase.auth().signInAnonymously();
-        fbUser = result.user;
-    } else {
-        fbUser = firebase.auth().currentUser;
-    }
-};
-
-window.checkProfile = async function(){
-  try{
-    const s = localStorage.getItem('ludoProfile'); 
-    if(s) { userProfile = JSON.parse(s); loadCoins(); }
-    const invite = new URLSearchParams(location.search).get('invite');
-    if(invite){
-      if(!s){document.getElementById('loginModal').classList.remove('hide');return;}
-      await ensureFirebaseBase();
-      if(firebase.auth().currentUser){fbUser=firebase.auth().currentUser; joinFriendRoom(invite);}
-      else document.getElementById('loginModal').classList.remove('hide');
-    }else if(!s) document.getElementById('profileModal').classList.remove('hide');
-  }catch(e){console.error(e);}
-};
-
-window.stopOnline = function() {
-    clearInterval(matchPollTimer); matchPollTimer = null;
-    onlinePaid = false;
-    if(matchRef && fbUser) {
-        try{ matchRef.child('players/'+fbUser.uid).onDisconnect().cancel(); }catch(e){}
-        matchRef.off(); 
-    }
-    matchRef = null; matchRoomId = null; onlineHost = false; onlinePlayerIndex = -1;
-    if(peer) { peer.destroy(); peer = null; }
-    peerConnections = {};
-    Object.values(remoteMediaStreams).forEach(s => s.getTracks().forEach(t=>t.stop()));
-    remoteMediaStreams = {};
-    if(localMediaStream) { localMediaStream.getTracks().forEach(t=>t.stop()); localMediaStream = null; }
-    const vids = document.querySelectorAll('.remote-video');
-    vids.forEach(v => { v.srcObject = null; v.style.display = 'none'; });
-};
-
-window.goHome = function() { 
-    started = false; 
-    clearGameTimers();
-    clearInterval(onlinePlayerInterval);
-    stopOnline();
-    document.getElementById('chatWrap').style.display='none';
-    document.getElementById('ludoGame').style.display='none'; 
-    document.getElementById('homeScreen').style.display='flex'; 
-    document.getElementById('winnerModal').classList.add('hide');
-    document.getElementById('friendRequestModal').classList.add('hide');
-    loadCoins(); 
-};
-
-// --- MENUS & SHARING ---
-window.openConfigModal = function(mode){
-  currentMode = mode; 
-  document.getElementById('playerCount').disabled = false;
-  if(mode === 'ai'){
-      document.getElementById('configTitle').innerText = '🤖 Setup AI Game'; 
-      document.getElementById('aiOptions').style.display = 'block';
-  } else {
-      document.getElementById('configTitle').innerText = '🌐 Setup Online Match'; 
-      document.getElementById('aiOptions').style.display = 'none';
-  }
-  document.getElementById('startModal').classList.remove('hide');
-};
-window.openLocalGameModal=function(){document.getElementById('localGameModal').classList.remove('hide');};
-
-window.startLocalGame = function(){
-  const pc = parseInt(document.getElementById('localPlayerCount').value,10)||4; 
-  currentMode = 'local'; entryFee = 0;
-  const selected = pc===2?['green','blue']:(pc===3?['green','yellow','blue']:['green','yellow','blue','red']);
-  players = selected.map((color,i)=>({id:i,color,name:i===0?(userProfile?.name||'Player 1'):'Player '+(i+1),avatar:i===0?(userProfile?.avatar||'👨'):['👩','👦','👧'][i-1]||'👤',flag:i===0?(userProfile?.flag||''):'',cpu:false,aiLevel:'',tokens:[0,0,0,0],rank:0,offline:false,extraUsed:false,active:true,uid:'local-'+i}));
-  document.getElementById('localGameModal').classList.add('hide');
-  document.getElementById('homeScreen').style.display='none';
-  document.getElementById('ludoGame').style.display='block';
-  document.getElementById('chatWrap').style.display='none';
-  started = true; ranks = []; current = 0; turnSerial++;
-  updatePlayersHUD(); renderTokens(); beginTurn();
-};
-
-window.createFriendRoom = async function(){
-  await ensureOnline(); 
-  const rid = roomId(); matchRoomId = rid; matchRef = db.ref('ludoRooms/'+rid);
-  onlineHost = true; onlinePlayerIndex = 0;
-  const me = onlinePlayer(0,'green','friends');
-  await matchRef.set({type:'friend',hostUid:fbUser.uid,fee:0,count:2,status:'waiting',inviteStatus:'waiting',createdAt:firebase.database.ServerValue.TIMESTAMP,players:{[fbUser.uid]:me}});
-  matchRef.child('players/'+fbUser.uid).onDisconnect().remove(); 
-  bindFriendRoom(rid); 
-  return rid;
-};
-
-window.startPlayWithFriends = async function(){
-    try{
-        await createFriendRoom();
-        document.getElementById('homeScreen').style.display='none';
-        document.getElementById('ludoGame').style.display='block';
-        document.getElementById('chatWrap').style.display='block';
-        started=false; updatePlayersHUD(); 
-        turnMsg.textContent='Invite your friend — waiting for acceptance';
-        await openShareModal();
-    }catch(e){alert('Friend room failed: '+e.message);}
-};
-
-window.openShareModal = async function(){
-    try{
-        if(!matchRoomId||!matchRef) await createFriendRoom();
-        document.getElementById('shareModal').classList.remove('hide');
-    }catch(e){alert('Share room create failed: '+e.message);}
-};
-
-window.shareTo = function(platform){
-  if(!matchRoomId){alert('Invite room create nahi hua.');return;}
-  const inviteUrl = window.location.href.split('?')[0]+'?invite='+encodeURIComponent(matchRoomId);
-  const txt = encodeURIComponent('Aao Ludo Premium khelein! Mere game invite par click karein: ');
-  if(platform==='whatsapp')window.open('https://api.whatsapp.com/send?text='+txt+encodeURIComponent(inviteUrl),'_blank');
-  else if(platform==='facebook')window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(inviteUrl),'_blank');
-  else if(platform==='telegram')window.open('https://t.me/share/url?url='+encodeURIComponent(inviteUrl)+'&text='+txt,'_blank');
-  else if(platform==='instagram')navigator.clipboard.writeText(inviteUrl).then(()=>alert('Invite link copied! Paste it in Instagram DM.'));
-  else if(navigator.share)navigator.share({title:'Ludo Premium',text:'Play Ludo with me',url:inviteUrl}).catch(()=>{});
-  else navigator.clipboard.writeText(inviteUrl).then(()=>alert('Invite link copied!'));
-};
-
-window.joinFriendRoom = async function(rid){
-  try{
-    await ensureFirebaseBase();
-    if(!firebase.auth().currentUser){document.getElementById('loginModal').classList.remove('hide');return;}
-    fbUser = firebase.auth().currentUser;
-    const ref = db.ref('ludoRooms/'+rid), snap = await ref.once('value'), room = snap.val(); 
-    if(!room||room.type!=='friend'){alert('Friend room expired or invalid.');return;}
-    const list = room.players||{};
-    if(Object.keys(list).length>=2 && !list[fbUser.uid]){alert('Room already full.');return;}
-    if(!list[fbUser.uid]){
-        const me = onlinePlayer(1,'blue','friends');
-        await ref.child('players/'+fbUser.uid).set(me);
-        ref.child('players/'+fbUser.uid).onDisconnect().remove();
-        await ref.child('inviteStatus').set('pending');
-    }
-    matchRoomId = rid; matchRef = ref; 
-    onlineHost = (room.hostUid===fbUser.uid); 
-    onlinePlayerIndex = onlineHost ? 0 : 1; 
-    currentMode = 'friends'; 
-    document.getElementById('homeScreen').style.display='flex'; 
-    bindFriendRoom(rid);
-  }catch(e){alert('Could not join friend room: '+e.message);}
-};
-
-window.closeFriendRequest=function(){document.getElementById('friendRequestModal').classList.add('hide');};
-window.acceptFriendRequest = async function(){
-    if(!matchRef||!onlineHost)return;
-    await matchRef.update({status:'accepted',inviteStatus:'accepted'});
-    document.getElementById('friendRequestModal').classList.add('hide');
-    startFriendGame();
-};
-window.rejectFriendRequest = async function(){
-    if(!matchRef||!onlineHost)return;
-    const hostUid = fbUser.uid, snap = await matchRef.child('players').once('value'), list = snap.val()||{};
-    Object.keys(list).filter(k=>k!==hostUid).forEach(k=>matchRef.child('players/'+k).remove());
-    await matchRef.update({status:'waiting',inviteStatus:'rejected'});
-    document.getElementById('friendRequestModal').classList.add('hide');
-    turnMsg.textContent='Friend request rejected — waiting for another invitee';
-};
-
-window.bindFriendRoom = function(rid){
-  const ref = db.ref('ludoRooms/'+rid); matchRef = ref;
-  ref.child('players').on('value', snap => {
-    const list = snap.val()||{}, arr = Object.values(list).sort((a,b)=>(a.id||0)-(b.id||0));
-    if(arr.length){
-        players = arr.map((q,i)=>({...q,id:i,color:i===0?'green':'blue',cpu:false,active:true,tokens:q.tokens||[0,0,0,0]}));
-        updatePlayersHUD(); renderTokens();
-    }
-    if(onlineHost && arr.length>=2 && !started) {
-        ref.child('status').once('value').then(ss=>{
-            if((ss.val()||'waiting')==='waiting'){
-                const inv = arr.find(q=>q.uid!==fbUser.uid);
-                document.getElementById('friendRequestText').textContent=(inv?.name||'Your friend')+' wants to play Ludo with you.';
-                document.getElementById('friendRequestModal').classList.remove('hide');
-            }
-        });
-    }
-  });
-  ref.child('status').on('value', snap => {
-      const st = snap.val();
-      if(st==='rejected' && !onlineHost){alert('Host rejected the game request.');goHome();}
-      if(st==='accepted' && !started) startFriendGame();
-  });
-  ref.child('state').on('value', snap => { if(snap.val() && !onlineHost) receiveState(snap.val()); });
-  ref.child('chat').limitToLast(50).on('child_added', snap => appendChat(snap.val()));
-};
-
-window.startFriendGame = function(){
-  if(started)return; if(players.filter(p=>p&&p.active).length<2)return;
-  currentMode='friends'; entryFee=0; current=0; ranks=[]; started=true; turnSerial++;
-  document.getElementById('friendRequestModal').classList.add('hide');
-  document.getElementById('shareModal').classList.add('hide');
-  document.getElementById('homeScreen').style.display='none';
-  document.getElementById('ludoGame').style.display='block';
-  document.getElementById('chatWrap').style.display='block';
-  updatePlayersHUD(); renderTokens(); beginTurn();
-  initPeer(); setTimeout(startMediaForOnline,900);
-  if(onlineHost) writeState();
-};
-
-window.writeState = function(){
-    if(matchRef && onlineHost && started) {
-        matchRef.child('state').set({
-            matchedFee: entryFee, players: players, current: current, dice: dice, 
-            rolled: rolled, moving: moving, sixCount: sixCount, started: started, ts: firebase.database.ServerValue.TIMESTAMP
-        });
-    }
-};
-
-window.receiveState = function(v){
-  if(!v||onlineHost) return;
-  if(!validateGameState(v)){ securityFail('Invalid or tampered game state received.'); return; }
-  
-  let wasStarted = started;
-  players = Array.isArray(v.players) ? v.players : players;
-  
-  // Preserve local turn machine state unless explicitly overwritten correctly
-  let stateCurrentChanged = (current !== (v.current||0));
-  current = v.current||0;
-  dice = v.dice||0;
-  rolled = !!v.rolled;
-  moving = !!v.moving;
-  rolling = false;
-  sixCount = v.sixCount||0;
-  started = !!v.started;
-  onlinePlayerIndex = players.findIndex(p=>p&&p.uid===fbUser.uid);
-  
-  if(started && !wasStarted){
-      let fee = Number(v.matchedFee||500); entryFee = fee;
-      if(!onlinePaid && fee > 0) {
-          if(totalCoins < fee){alert('Not enough coins!');stopOnline();goHome();return;}
-          totalCoins -= fee; localStorage.setItem('ludoCoins',totalCoins); loadCoins(); onlinePaid = true;
-      }
-      initPeer(); setTimeout(startMediaForOnline,1200);
-  }
-  
-  updatePlayersHUD(); renderTokens();
-  if(stateCurrentChanged && started) beginTurn();
-};
-
-window.sendAction = function(action, payload){
-    if(!matchRef || onlineHost || !fbUser || !validateActionPacket(action, payload, fbUser.uid)) return;
-    matchRef.child('actions').push({ from: fbUser.uid, action: action, payload: payload||{}, ts: firebase.database.ServerValue.TIMESTAMP });
-};
-
-window.bindRoom = function(roomIdValue, isHost){
-  matchRoomId = roomIdValue; matchRef = db.ref('ludoRooms/'+roomIdValue); onlineHost = isHost;
-  if(isHost){
-      matchRef.child('actions').on('child_added', snap => {
-          let a = snap.val();
-          if(!a || a.from===fbUser.uid || !validateActionPacket(a.action, a.payload, a.from)) return;
-          if(a.action==='roll' && players[current] && players[current].uid===a.from) rollDice();
-          if(a.action==='move' && players[current] && players[current].uid===a.from && !moving && rolled) animateMove(players[current], a.payload.index);
-      });
-      matchRef.child('players').on('value', snap => {
-          let list = snap.val()||{};
-          let arr = Object.values(list).sort((a,b)=>(a.id||0)-(b.id||0));
-          if(arr.length){
-              players = arr.map((q,i)=>({...q, id:i, color:['green','yellow','blue','red'][i], cpu:false, active:true, tokens:q.tokens||[0,0,0,0]}));
-              updatePlayersHUD(); renderTokens();
-          }
-      });
-      matchRef.child('chat').limitToLast(50).on('child_added', snap => appendChat(snap.val()));
-  } else {
-      matchRef.child('state').on('value', snap => receiveState(snap.val()));
-      matchRef.child('players').on('value', snap => {
-          let list = snap.val()||{};
-          players = Object.values(list).sort((a,b)=>(a.id||0)-(b.id||0));
-          updatePlayersHUD(); renderTokens();
-      });
-      matchRef.child('chat').limitToLast(50).on('child_added', snap => appendChat(snap.val()));
-  }
-};
-
-window.resolveMatchedFee = function(a, b){
-    if(a==='any' && b==='any') return 500;
-    if(a==='any') return parseInt(b,10);
-    return parseInt(a,10);
-};
-
-window.startHostWhenReady = async function(){
- let snap = await matchRef.child('players').once('value');
- let list = snap.val()||{};
- let arr = Object.values(list).sort((a,b)=>(a.id||0)-(b.id||0));
- let required = Number((await matchRef.child('count').once('value')).val()||2);
- if(arr.length < required){ turnMsg.textContent='Waiting for real player...'; return; }
- 
- clearInterval(matchPollTimer); matchPollTimer=null;
- const reqFees = arr.map(x=>x.requestedFee); const fixed = reqFees.find(x=>x!=='any'); const fee = fixed?parseInt(fixed,10):500;
- await matchRef.child('matchedFee').set(fee); entryFee = fee;
- 
- if(!onlinePaid && entryFee > 0) {
-     if(totalCoins < entryFee){alert('Not enough coins!');stopOnline();goHome();return;}
-     totalCoins -= entryFee; localStorage.setItem('ludoCoins',totalCoins); loadCoins(); onlinePaid = true;
- }
- 
- players = arr.slice(0,required).map((q,i)=>({...q, id:i, color:['green','yellow','blue','red'][i], cpu:false, active:true, tokens:[0,0,0,0], rank:0}));
- currentMode='online'; onlinePlayerIndex=0; started=true; ranks=[]; current=0; turnSerial++;
- document.getElementById('startModal').classList.add('hide'); document.getElementById('homeScreen').style.display='none';
- document.getElementById('ludoGame').style.display='block'; document.getElementById('chatWrap').style.display='block';
- updatePlayersHUD(); renderTokens(); beginTurn(); writeState();
- initPeer(); setTimeout(startMediaForOnline,900);
-};
-
-window.createOrJoinRealMatch = async function(){
- if(!secureOnlineAllowed()){ securityFail('Configure Firebase in script first.'); return; }
- try{
-     await ensureOnline();
-     let fee = coinChoice(), count = onlineCount();
-     document.getElementById('startModal').classList.add('hide'); document.getElementById('homeScreen').style.display='none'; document.getElementById('ludoGame').style.display='block';
-     turnMsg.textContent='Searching real online players...';
-     
-     let qref = db.ref('ludoQueue'), snap = await qref.once('value'), q = snap.val()||{}, found = null;
-     Object.keys(q).some(k=>{
-         let x=q[k]; if(!x||x.uid===fbUser.uid)return false;
-         let feeOK = (fee==='any'||x.fee==='any'||String(x.fee)===String(fee));
-         if(feeOK && Number(x.count)===count){ found={key:k,...x}; return true; } return false;
-     });
-     
-     if(found){
-         await qref.child(found.key).remove();
-         matchRoomId = found.roomId; matchRef = db.ref('ludoRooms/'+matchRoomId);
-         let me = onlinePlayer(1, 'blue', fee);
-         await matchRef.child('players/'+fbUser.uid).set(me);
-         matchRef.child('players/'+fbUser.uid).onDisconnect().remove();
-         onlinePlayerIndex = 1; document.getElementById('chatWrap').style.display='block';
-         bindRoom(matchRoomId, false);
-         turnMsg.textContent='Opponent found. Connecting...';
-         return;
-     }
-     
-     let rid = roomId(), me = onlinePlayer(0, 'green', fee);
-     matchRoomId = rid; matchRef = db.ref('ludoRooms/'+rid);
-     await matchRef.set({hostUid:fbUser.uid, fee:fee, count:count, players:{[fbUser.uid]:me}, createdAt:firebase.database.ServerValue.TIMESTAMP});
-     qref.child(fbUser.uid).set({roomId:rid, uid:fbUser.uid, fee:fee, count:count, ts:firebase.database.ServerValue.TIMESTAMP});
-     qref.child(fbUser.uid).onDisconnect().remove(); matchRef.child('players/'+fbUser.uid).onDisconnect().remove();
-     document.getElementById('chatWrap').style.display='block';
-     bindRoom(rid, true); onlineHost = true; onlinePlayerIndex = 0;
-     turnMsg.textContent='Waiting for a real opponent...';
-     matchPollTimer = setInterval(startHostWhenReady, 1200);
- }catch(e){console.error(e);alert('Online setup failed: '+e.message);stopOnline();goHome();}
-};
-
-window.startRealOnlineFromButton = function(){
-    let v = document.getElementById('entryFeeSelect').value;
-    entryFee = (v==='any') ? 0 : parseInt(v,10);
-    if(v!=='any' && totalCoins < entryFee){ alert('Not enough coins!'); return; }
-    createOrJoinRealMatch();
-};
-
-window.initPeer = function(){
-    if(typeof Peer==='undefined'){turnMsg.textContent='WebRTC library load failed';return;}
-    peer = new Peer(undefined, {host:'0.peerjs.com', port:443, path:'/', secure:true});
-    peer.on('open', id => { if(matchRef) matchRef.child('players/'+fbUser.uid+'/peerId').set(id); });
-    peer.on('connection', c => bindPeer(c));
-    peer.on('call', call => {
-        if(localMediaStream) call.answer(localMediaStream); else call.answer();
-        call.on('stream', s => { remoteMediaStreams[call.peer] = s; attachRemote(call.peer, s); });
-    });
-};
-
-window.bindPeer = function(c){
-    peerConnections[c.peer] = c;
-    c.on('data', m => {
-        if(m && m.type==='game-action' && onlineHost){
-            if(m.action==='roll' && players[current].uid===m.uid) rollDice();
-            if(m.action==='move' && players[current].uid===m.uid && !moving && rolled) animateMove(players[current], m.index);
-        }
-    });
-};
-
-window.attachRemote = function(peerId, stream){
-    let p = players.find(x=>x.peerId===peerId); if(!p) return;
-    let v = document.getElementById('vid-'+p.color);
-    if(v){ v.srcObject = stream; v.style.display = 'block'; v.play().catch(()=>{}); }
-};
-
-window.startMediaForOnline = async function(){
-    if(currentMode!=='online' && currentMode!=='friends') return;
-    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
-    try{
-        if(!localMediaStream) localMediaStream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
-        let me = players[onlinePlayerIndex];
-        if(me){
-            let v = document.getElementById('vid-'+me.color);
-            if(v){ v.srcObject = localMediaStream; v.muted = true; v.style.display = 'block'; v.play().catch(()=>{}); }
-        }
-        players.filter(p=>p&&p.active&&p.peerId&&p.peerId!==peer?.id).forEach(p=>{
-            if(!peerConnections[p.peerId]){
-                let c = peer.connect(p.peerId); bindPeer(c);
-                let call = peer.call(p.peerId, localMediaStream);
-                call.on('stream', s => { remoteMediaStreams[p.peerId] = s; attachRemote(p.peerId, s); });
-            }
-        });
-    }catch(e){console.warn(e);}
-};
-
-window.toggleMedia = function(btn, type, color){
-    btn.classList.toggle('off');
-    if(currentMode!=='online' && currentMode!=='friends') return;
-    startMediaForOnline().then(()=>{
-        if(type==='cam' && localMediaStream) localMediaStream.getVideoTracks().forEach(t=>t.enabled = !btn.classList.contains('off'));
-        if(type==='mic' && localMediaStream) localMediaStream.getAudioTracks().forEach(t=>t.enabled = !btn.classList.contains('off'));
-        if(type==='speaker') Object.values(remoteMediaStreams).forEach(s=>{ [...document.querySelectorAll('video')].filter(v=>v.srcObject===s).forEach(v=>v.muted=btn.classList.contains('off')); });
-    });
-};
-
-// --- CHAT ---
-window.appendChat = function(m){
-  const box = document.getElementById('chatMessages'); if(!box||!m)return;
-  const d = document.createElement('div'); d.className='chat-msg';
-  d.innerHTML='<b>'+String(m.name||'Player').replace(/[<>&]/g,'')+':</b> '+String(m.text||'').replace(/[<>&]/g,'');
-  box.appendChild(d); box.scrollTop = box.scrollHeight;
-};
-
-window.sendChatMessage = function(){
-  if(!matchRef || !fbUser) return;
-  const input = document.getElementById('chatInput'); const text = (input.value||'').trim(); if(!text) return;
-  const words = text.split(/\s+/).filter(Boolean);
-  if(words.length>50){alert('Chat message maximum 50 words hai.');return;}
-  if(!validUid(String(fbUser.uid||'')) || text.length > SECURITY_CONFIG.MAX_CHAT_CHARS) return; 
-  matchRef.child('chat').push({ uid:fbUser.uid, name:String(userProfile.name||fbUser.displayName||'Player').slice(0,40), text:text.slice(0,SECURITY_CONFIG.MAX_CHAT_CHARS), ts:firebase.database.ServerValue.TIMESTAMP });
-  input.value='';
-};
-
-// --- PROFILE CARD TOGGLE ---
-window.toggleProfileCard = function(color){
-  const p = players.find(x=>x.color===color); if(!p||!p.active)return;
-  const modal = document.getElementById('playerProfileViewModal');
-  const box = document.getElementById('playerProfileViewContent');
-  const remote = remoteMediaStreams[p.peerId]; const local = (p.uid&&fbUser&&p.uid===fbUser.uid) ? localMediaStream : null; const stream = remote||local;
-  
-  let html = '<button class="closeBtn" onclick="document.getElementById(\'playerProfileViewModal\').classList.add(\'hide\')">X</button>'+
-             '<div class="modalTitle">👤 '+String(p.name||'Player').replace(/[<>&]/g,'')+'</div>'+
-             '<video id="profileVideo" class="profile-video" autoplay playsinline></video>'+ 
-             '<div id="profileAvatarLarge" class="profile-avatar-large">'+(p.avatar||'👤')+'</div>'+
-             '<div style="color:#aaa;text-align:center;font-size:13px;margin-bottom:12px;">'+(stream?'Live Video':'Camera Off')+'</div>';
-  
-  box.innerHTML = html;
-  modal.classList.remove('hide');
-  const v = document.getElementById('profileVideo'); const av = document.getElementById('profileAvatarLarge');
-  if(stream){ v.srcObject = stream; v.style.display = 'block'; av.style.display = 'none'; v.play().catch(()=>{}); }
-  else{ v.style.display = 'none'; av.style.display = 'flex'; }
-};
-
-document.getElementById('playerProfileViewModal').addEventListener('click', function(e){ if(e.target===this) this.classList.add('hide'); });
-document.getElementById('profileModal').addEventListener('click', function(e){ if(e.target===this) this.classList.add('hide'); });
-
-// --- CORE GAME LOGIC ---
-window.startGame = function(isSim){
-    let pc = parseInt(document.getElementById('playerCount').value,10);
-    let feeValue = document.getElementById('entryFeeSelect').value;
-    entryFee = feeValue==='any' ? 500 : parseInt(feeValue,10);
-    
-    if(currentMode==='online'){ startRealOnlineFromButton(); return; }
-    
-    if(totalCoins < entryFee){ alert('Not enough coins! Need '+entryFee+' 💰'); return; }
-    totalCoins -= entryFee; localStorage.setItem('ludoCoins',totalCoins); loadCoins();
-    
-    let selected = pc===2 ? ['green','blue'] : (pc===3 ? ['green','yellow','blue'] : ['green','yellow','blue','red']);
-    aiLevel = document.getElementById('aiDifficulty').value;
-    
-    players = selected.map((color,i)=>({
-        id:i, color, name:i===0?userProfile.name:'AI '+COLOR_NAMES[color],
-        avatar:i===0?userProfile.avatar:['🤖','🤖','🤖'][i-1]||'🤖',
-        flag:i===0?userProfile.flag:'', cpu:i>0, aiLevel:aiLevel, tokens:[0,0,0,0], rank:0, offline:false, extraUsed:false, active:true, uid:'ai-'+i
-    }));
-    
-    document.getElementById('startModal').classList.add('hide'); document.getElementById('homeScreen').style.display='none';
-    document.getElementById('ludoGame').style.display='block';
-    
-    started = true; current = 0; ranks = []; turnSerial++;
-    updatePlayersHUD(); renderTokens(); beginTurn();
-};
-
-window.getDiceHTML = function(val) {
-   if(!val) return '<div class="dot center-dot"></div>';
-   const d = { 1: ['center-dot'], 2: ['top-left', 'bottom-right'], 3: ['top-left', 'center-dot', 'bottom-right'], 4: ['top-left', 'top-right', 'bottom-left', 'bottom-right'], 5: ['top-left', 'top-right', 'center-dot', 'bottom-left', 'bottom-right'], 6: ['top-left', 'top-right', 'middle-left', 'middle-right', 'bottom-left', 'bottom-right'] };
-   let html = ''; if(d[val]) d[val].forEach(pos => { html += '<div class="dot ' + pos + '"></div>'; }); return html;
-};
-
-window.createBoard = function(){
-  cells.innerHTML = ''; const trackMap = {}; TRACK.forEach((p,i) => { trackMap[p[0]+'-'+p[1]] = i; });
-  for(let r=0; r<15; r++){
-    for(let c=0; c<15; c++){
-      const el = document.createElement('div'); el.className = 'cell'; const key = r+'-'+c;
-      if(trackMap[key] !== undefined){
-        el.classList.add('path'); const index = trackMap[key];
-        if(index === START_INDEX.green) el.classList.add('greenStart'); if(index === START_INDEX.yellow) el.classList.add('yellowStart');
-        if(index === START_INDEX.blue) el.classList.add('blueStart'); if(index === START_INDEX.red) el.classList.add('redStart');
-        if(SAFE.indexOf(index) !== -1) el.classList.add('star');
-      }
-      if(HOME_LANES.green.some(p=>p[0]===r && p[1]===c)) el.classList.add('lane','greenLane'); if(HOME_LANES.yellow.some(p=>p[0]===r && p[1]===c)) el.classList.add('lane','yellowLane');
-      if(HOME_LANES.blue.some(p=>p[0]===r && p[1]===c)) el.classList.add('lane','blueLane'); if(HOME_LANES.red.some(p=>p[0]===r && p[1]===c)) el.classList.add('lane','redLane');
-      cells.appendChild(el);
-    }
-  }
-};
-
-window.getGridPos = function(p, ti, tv) {
-  if(tv === 0) return { top: HOME_POS[p.color][ti].t, left: HOME_POS[p.color][ti].l };
-  if(tv === 57) { let m={red:{top:50,left:45},green:{top:45,left:50},yellow:{top:50,left:55},blue:{top:55,left:50}}; return m[p.color]; }
-  if(tv >= 1 && tv <= 51) return TRACK[(START_INDEX[p.color] + tv - 1) % 52];
-  if(tv >= 52 && tv <= 56) return HOME_LANES[p.color][tv - 52];
-};
-
-window.renderTokens = function(){
-  tokenLayer.innerHTML = ''; let posMap = {};
-  players.forEach(player => {
-    if(!player.active) return;
-    player.tokens.forEach((val, index) => {
-      const token = document.createElement('div'); token.className = 'token ' + player.color;
-      token.innerHTML = '<div class="pawn"><div class="pawnHead"></div><div class="pawnBody"></div><div class="pawnBase"></div></div>';
-      
-      let isM = (player.id === current && rolled && !moving && canMove(player, index, dice));
-      
-      token.addEventListener('click', (e) => { 
-          e.stopPropagation(); 
-          if(started && !rolling && rolled && !moving && player.id===current && canMove(player,index,dice)){
-              if((currentMode==='online' || currentMode==='friends') && !onlineHost) sendAction('move',{index:index}); 
-              else animateMove(player,index);
-          } 
-      });
-      
-      let pos = getGridPos(player, index, val); 
-      let pk = pos.top!==undefined ? (val===57?'FINAL-'+player.color:val+'-'+player.color+'-'+index) : pos[0]+'-'+pos[1];
-      if(!posMap[pk]) posMap[pk] = [];
-      if(isM) token.classList.add('movable');
-      posMap[pk].push({el:token, pos:pos, isM:isM, val:val});
-    });
-  });
-
-  Object.keys(posMap).forEach(key => {
-    let grp = posMap[key]; let cnt = grp.length;
-    grp.forEach((item, i) => {
-      let tPct = item.pos.top !== undefined ? item.pos.top : ((item.pos[0]+0.5)/15*100);
-      let lPct = item.pos.top !== undefined ? item.pos.left : ((item.pos[1]+0.5)/15*100);
-      item.el.style.top = tPct+'%'; item.el.style.left = lPct+'%';
-      
-      if(item.val === 0) {
-          let offsets = [{x:-12, y:-12}, {x:12, y:-12}, {x:-12, y:12}, {x:12, y:12}];
-          let off = offsets[i];
-          item.el.style.transform = `translate(calc(-50% + ${off.x}px), calc(-50% + ${off.y}px)) scale(0.8)`;
-      } else if(item.val===57) { 
-          let offsets=[{x:-7,y:-7},{x:7,y:-7},{x:-7,y:7},{x:7,y:7}]; 
-          let off=offsets[i%4]; 
-          item.el.style.transform=`translate(calc(-50% + ${off.x}px),calc(-50% + ${off.y}px)) scale(.65)`; 
-          item.el.style.zIndex=900+i; 
-      } else if(cnt>1 && item.val<=56) { 
-          let ox = [-10,10,-10,10][i%4]; let oy = [-10,10,10,-10][i%4]; 
-          item.el.style.transform = `translate(calc(-50% + ${ox}px), calc(-50% + ${oy}px)) scale(0.65)`; 
-      } else { 
-          item.el.style.transform = `translate(-50%, -50%) scale(1)`; 
-      }
-      item.el.style.zIndex = item.isM ? 1000 : 50+i; 
-      tokenLayer.appendChild(item.el);
-    });
-  });
-};
-
-window.canMove = function(player, index, roll){
- const pos = player.tokens[index];
- if(pos === 57) return false;
- if(pos === 0) return roll === 6;
- return pos + roll <= 57;
-};
-
-window.clearGameTimers = function(){
- clearInterval(turnTimer); turnTimer = null;
- if(cpuTimer){ clearTimeout(cpuTimer); cpuTimer = null; }
-};
-
-window.resetTurnFlags = function(){
- dice = 0; rolled = false; rolling = false; moving = false;
-};
-
-window.startTurnTimer = function(){
- if((currentMode==='online'||currentMode==='friends') && !onlineHost){ clearInterval(turnTimer); turnTimer=null; return; }
- clearInterval(turnTimer); turnTimer = null;
-
- COLORS.forEach(c => {
-   const t = document.getElementById('timer-'+c);
-   if(t){ t.style.strokeDashoffset = 176; t.classList.remove('danger'); }
- });
-
- const p = players[current];
- if(!p || !p.active || p.rank > 0 || !started) return;
-
- const myTurnSerial = turnSerial; timeLeft = 20;
-
- const actT = document.getElementById('timer-'+p.color);
- if(actT) actT.style.strokeDashoffset = 0;
-
- turnTimer = setInterval(() => {
-   if(!started || myTurnSerial !== turnSerial) return;
-   if(!players[current] || players[current].id !== p.id) return;
-   if(moving || rolling) return;
-
-   timeLeft--;
-
-   if(actT){
-     const maxTime = timeLeft > 20 ? 30 : 20;
-     actT.style.strokeDashoffset = Math.max(0, 176 - (176 * (timeLeft / maxTime)));
-     if(timeLeft <= 5) actT.classList.add('danger');
-   }
-
-   if(timeLeft <= 0){
-     clearInterval(turnTimer); turnTimer = null;
-
-     if((currentMode==='online'||currentMode==='friends') && onlineHost){
-       turnMsg.textContent = 'Time Out! Turn passed.';
-       nextTurn(); return;
-     }
-
-     if(!p.extraUsed && !p.cpu){
-       p.extraUsed = true; timeLeft = 30; turnMsg.textContent = "Extra 30s Grace!";
-       if(actT){ actT.style.strokeDashoffset = 0; actT.classList.remove('danger'); }
-       turnTimer = setInterval(() => {
-         if(!started || myTurnSerial !== turnSerial) return;
-         if(moving || rolling) return;
-         timeLeft--;
-         if(actT){ actT.style.strokeDashoffset = Math.max(0, 176 - (176 * (timeLeft / 30))); if(timeLeft <= 5) actT.classList.add('danger'); }
-         if(timeLeft <= 0){
-           clearInterval(turnTimer); turnTimer = null;
-           p.cpu = true; p.offline = true; document.getElementById('hud-'+p.color).classList.add('offline'); updatePlayersHUD();
-           turnMsg.textContent = "Time Out! Auto Play.";
-           cpuTimer = setTimeout(() => { if(started && players[current] && players[current].id === p.id) cpuPlay(); }, 500);
-         }
-       }, 1000);
-     } else {
-       p.cpu = true; p.offline = true; document.getElementById('hud-'+p.color).classList.add('offline'); updatePlayersHUD();
-       turnMsg.textContent = "Time Out! Auto Play.";
-       cpuTimer = setTimeout(() => { if(started && players[current] && players[current].id === p.id) cpuPlay(); }, 500);
-     }
-   }
- }, 1000);
-};
-
-window.updatePlayersHUD = function(){
- COLORS.forEach(c => {
-   const hud = document.getElementById('hud-'+c);
-   const p = players.find(x => x.color === c);
-   hud.classList.remove('active','empty','offline');
-
-   if(p && p.active){
-     hud.style.opacity = '1';
-     if(players[current] && players[current].color === c) hud.classList.add('active');
-     if(p.offline) hud.classList.add('offline');
-     document.getElementById('name-'+c).innerText = p.name + (p.flag ? " "+p.flag : "");
-     document.querySelector('#av-'+c+' .emoji-av').textContent = p.avatar || '';
-   }else{
-     hud.style.opacity = '0.3'; hud.classList.add('empty');
-   }
- });
-};
-
-window.beginTurn = function(){
-    if(!started) return;
-    clearGameTimers();
-    let attempts = 0;
-    while(attempts < players.length && (!players[current] || !players[current].active || players[current].rank > 0)){
-       current = (current + 1) % players.length;
-       attempts++;
-    }
-    const p = players[current];
-    if(!p || p.rank > 0){ started = false; return; }
-
-    resetTurnFlags(); turnSerial++;
-    updatePlayersHUD();
-    turnMsg.innerHTML = `<span style="color:${COLOR_HEX[p.color]}">${p.name}</span> turn`;
-
-    COLORS.forEach(c => {
-       const d = document.getElementById('dice-'+c);
-       d.style.display = 'none'; d.classList.remove('active','rolling');
-    });
-
-    const activeD = document.getElementById('dice-'+p.color);
-    activeD.style.display = 'block'; activeD.innerHTML = getDiceHTML(1); activeD.classList.add('active');
-
-    startTurnTimer();
-
-    if(p.cpu){
-       const turnId = p.id; const ts = turnSerial;
-       cpuTimer = setTimeout(() => {
-         if(started && turnSerial === ts && players[current] && players[current].id === turnId && !rolling && !rolled && !moving){
-             cpuPlay();
-         }
-       }, 700);
-    }
-};
-
-COLORS.forEach(c => {
- document.getElementById('dice-'+c).addEventListener('click', () => {
-   const p = players[current];
-   if(started && p && p.color === c && !p.cpu && !rolling && !rolled && !moving){
-     if((currentMode==='online'||currentMode==='friends') && !onlineHost){ sendAction('roll'); } else { rollDice(); }
-   }
- });
-});
-
-window.rollDice = function(forceCpu=false){
- const p = players[current];
- if(!started || !p || p.rank > 0 || !p.active || (p.cpu && !forceCpu) || rolling || rolled || moving) return;
-
- rolling = true; clearInterval(turnTimer); playAudio('roll');
-
- const d = document.getElementById('dice-'+p.color);
- d.classList.add('rolling'); d.classList.remove('active');
- const myTs = turnSerial;
-
- let count = 0;
- const timer = setInterval(() => {
-   if(!started || myTs !== turnSerial || players[current] !== p){ clearInterval(timer); rolling = false; return; }
-   d.innerHTML = getDiceHTML(Math.floor(Math.random()*6)+1); count++;
-
-   if(count >= 8){
-     clearInterval(timer);
-     let r = Math.floor(Math.random()*6) + 1;
-     if(sixCount >= 2 && r === 6) r = Math.floor(Math.random()*5) + 1;
-     dice = r; rolling = false;
-     d.classList.remove('rolling'); d.classList.add('active');
-     d.innerHTML = getDiceHTML(dice);
-     document.getElementById('val-'+p.color).innerText = "Roll: "+dice;
-     
-     startTurnTimer();
-     afterRoll(p, myTs);
-     if(onlineHost) writeState();
-   }
- },80);
-};
-
-window.afterRoll = function(playerAtRoll, expectedTs){
- if(!started || players[current] !== playerAtRoll || expectedTs !== turnSerial) return;
-
- rolled = true; const rollValue = dice;
- const moves = playerAtRoll.tokens.map((t,i) => canMove(playerAtRoll,i,rollValue) ? i : -1).filter(i => i !== -1);
-
- if(!moves.length){
-   rolled = false; turnMsg.textContent = rollValue + " - No Move";
-   if(rollValue === 6){
-     sixCount++;
-     if(sixCount >= 3){
-       sixCount = 0; turnMsg.textContent = "3 Sixes - Turn Passed";
-       setTimeout(() => { if(started && turnSerial===expectedTs) nextTurn(); }, 600);
-     } else {
-       setTimeout(() => { if(started && turnSerial===expectedTs) beginTurn(); }, 600);
-     }
-   } else {
-     sixCount = 0;
-     setTimeout(() => { if(started && turnSerial===expectedTs) nextTurn(); }, 600);
-   }
-   return;
- }
-
- if(moves.length === 1){
-   turnMsg.textContent = "Auto Moving...";
-   setTimeout(() => {
-     if(started && turnSerial===expectedTs && players[current] === playerAtRoll && rolled && !moving){ animateMove(playerAtRoll, moves[0]); }
-   }, 400);
- } else {
-   turnMsg.textContent = rollValue + " - Select Token";
-   renderTokens(); startTurnTimer();
- }
-};
-
-window.animateMove = function(player, index){
- if(!started || players[current] !== player || moving || !rolled || !canMove(player,index,dice)) return;
- const roll = dice; const startPos = player.tokens[index]; const myTs = turnSerial;
-
- moving = true; rolled = false; clearInterval(turnTimer);
-
- if(startPos === 0){
-   player.tokens[index] = 1; renderTokens(); playAudio('move');
-   setTimeout(() => { if(started && turnSerial===myTs) finalizeMove(player,index,startPos,roll,myTs); }, 300);
-   return;
- }
-
- let cs = 0;
- const interval = setInterval(() => {
-   if(!started || turnSerial!==myTs){ clearInterval(interval); moving = false; return; }
-   player.tokens[index]++; cs++; renderTokens(); playAudio('move');
-   if(cs >= roll){
-     clearInterval(interval);
-     setTimeout(() => { if(started && turnSerial===myTs) finalizeMove(player,index,startPos,roll,myTs); }, 250);
-   }
- },200);
-};
-
-window.sendHomeAnimated = function(opponent, index, callback){
- let currentPos = opponent.tokens[index];
- const stepBack = setInterval(() => {
-   if(currentPos > 1){ currentPos--; opponent.tokens[index] = currentPos; renderTokens(); }
-   else{ clearInterval(stepBack); opponent.tokens[index] = 0; renderTokens(); if(callback) callback(); }
- },40);
-};
-
-window.finalizeMove = function(player, index, startPos, roll, expectedTs){
- if(!started || turnSerial !== expectedTs) return;
- const targets = captureTargets(player,index);
- const didCapture = targets.length > 0;
-
- if(didCapture){
-   const ops = targets[0];
-   sendHomeAnimated(players[ops.pId], ops.tId, () => {
-     if(started && turnSerial===expectedTs) continueFinalize(player,index,startPos,roll,true,expectedTs);
-   });
- } else {
-   renderTokens();
-   continueFinalize(player,index,startPos,roll,false,expectedTs);
- }
-};
-
-window.continueFinalize = function(player, index, startPos, roll, didCapture, expectedTs){
- if(!started || turnSerial !== expectedTs) return;
- const reachedHomeNow = startPos < 57 && player.tokens[index] === 57;
-
- if(player.tokens.every(x => x === 57) && player.rank === 0){
-   player.rank = ranks.length + 1; ranks.push(player);
-   const activeCount = players.filter(p => p.active).length;
-   if(ranks.length >= activeCount - 1){ moving = false; setTimeout(endGame,500); return; }
- }
-
- moving = false;
-
- if(didCapture){ sixCount = 0; turnMsg.textContent = "Killed! Extra turn!"; beginTurn(); if(onlineHost) writeState(); return; }
- if(reachedHomeNow){ sixCount = 0; turnMsg.textContent = "Reached Home! Extra turn!"; beginTurn(); if(onlineHost) writeState(); return; }
- if(roll === 6){
-   sixCount++;
-   if(sixCount >= 3) { sixCount = 0; turnMsg.textContent = "3 Sixes! Turn passed."; nextTurn(); if(onlineHost) writeState(); return; }
-   turnMsg.textContent = "Extra turn!"; beginTurn(); if(onlineHost) writeState(); return;
- }
-
- sixCount = 0;
- if(onlineHost) writeState();
- nextTurn();
-};
-
-window.captureTargets = function(player, tokenIndex){
- const myToken = player.tokens[tokenIndex]; if(myToken < 1 || myToken > 51) return [];
- const myAbsolute = (START_INDEX[player.color] + myToken - 1) % 52;
- if(SAFE.indexOf(myAbsolute) !== -1) return [];
- const targets = [];
- players.forEach((opponent,pIdx) => {
-   if(opponent.id === player.id || !opponent.active) return;
-   opponent.tokens.forEach((other,tIdx) => {
-     if(other < 1 || other > 51) return;
-     if(((START_INDEX[opponent.color] + other - 1) % 52) === myAbsolute){ targets.push({pId:pIdx,tId:tIdx}); }
-   });
- });
- return targets;
-};
-
-window.nextTurn = function(){
- if(!started) return;
- current = (current + 1) % players.length;
- beginTurn();
- if(onlineHost) writeState();
-};
-
-window.aiScoreMove = function(p, i, level){
-  const rollValue=dice, pos=p.tokens[i]; let score=Math.random()*3;
-  if(pos===0 && rollValue===6) score+= level==='easy'?8:18;
-  if(pos+rollValue===57) score+= level==='easy'?20:100;
-  if(captureTargets(p,i).length) score+= level==='easy'?15:(level==='hard'?45:90);
-  const next=pos===0?1:pos+rollValue;
-  if(next>=1&&next<=51){const abs=(START_INDEX[p.color]+next-1)%52;if(SAFE.includes(abs))score+=level==='veryhard'?30:(level==='hard'?18:5);}
-  if(pos>0&&pos<52) score+=level==='veryhard'?pos*0.35:(level==='hard'?pos*0.12:0);
-  return score;
-};
-
-window.cpuPlay = function(){
- if(!started)return; const p=players[current]; if(!p||!p.active||p.rank>0||!p.cpu||rolling||rolled||moving)return;
- const level=(aiLevel||p.aiLevel||'easy').toLowerCase(); const turnId=p.id; const ts=turnSerial; const think=level==='easy'?350:(level==='hard'?650:900);
- rollDice(true);
- cpuTimer=setTimeout(()=>{
-   cpuTimer=null;
-   if(!started || ts!==turnSerial || players[current]!==p || !rolled || rolling || moving) return;
-   const legal=p.tokens.map((t,i)=>canMove(p,i,dice)?i:-1).filter(i=>i>=0);
-   if(!legal.length){ afterRoll(p, ts); return; }
-   let choice;
-   if(level==='easy') choice=legal[Math.floor(Math.random()*legal.length)];
-   else if(level==='hard') choice=legal.slice().sort((a,b)=>aiScoreMove(p,b,'hard')-aiScoreMove(p,a,'hard'))[0];
-   else choice=legal.slice().sort((a,b)=>aiScoreMove(p,b,'veryhard')-aiScoreMove(p,a,'veryhard'))[0];
-   animateMove(p, choice);
- },think+900);
-};
-
-window.endGame = function() {
-    started = false; clearGameTimers();
-    let activePlayers = players.filter(p=>p.active);
-    activePlayers.forEach(p => { if(p.rank === 0) { p.rank = activePlayers.length; ranks.push(p); } });
-    
-    let pool = entryFee * activePlayers.length;
-    let rewards = [0, 0, 0, 0];
-    if(activePlayers.length === 2) { rewards[0] = pool - (entryFee*0.1); } 
-    else if(activePlayers.length === 3) { rewards[0] = entryFee*2; rewards[1] = entryFee*0.8; }
-    else if(activePlayers.length === 4) { rewards[0] = entryFee*2.5; rewards[1] = entryFee*1; rewards[2] = entryFee*0.5; }
-    
-    let html = "";
-    ranks.forEach((p, i) => { 
-        html += `#${p.rank} ${String(p.name).replace(/[<>&]/g,'')} - Won ${rewards[i]}💰<br/>`; 
-        if(p.id === 0 && !p.cpu && entryFee > 0) { 
-            totalCoins += rewards[i]; 
-            localStorage.setItem('ludoCoins', totalCoins); 
-        }
-    });
-    
-    document.getElementById('rankList').innerHTML = html;
-    document.getElementById('winnerName').innerText = ranks[0].name + " Wins!";
-    document.getElementById('winnerModal').classList.remove('hide');
-};
-
-/* INIT */
-checkProfile(); 
-createBoard();
-})();
-//]]>
-</script>
-<b:section id='main' showaddelement='no'/>
+<!-- Firebase & PeerJS Scripts -->
+<script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js'></script>
+<script src='https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js'></script>
+
+<!-- JS File Link -->
+<script src='script.js'></script>
 </body>
 </html>
